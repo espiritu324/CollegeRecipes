@@ -1,19 +1,8 @@
 ## Link
-https://cookmetoo.herokuapp.com/
-(_cookme.herokuapp.com_ was, sadly, taken)
+none. Just this github repo. Heroku was being a pain and we ended up scrapping the idea of hosting it online.
 
-## What is Cookme?
-It is a practice website that serves as a simple recipe holder with 
-hand-crafted ui. 
-
-A user is presented with a clean interface that enables browsing of recipes 
-that have been added by the users. Additionally, the user can search for 
-ingredient(s) that he/she would like to use. Recipes containing them will be
-shown. Furthermore, user can add recipes and ingredients to his/her fridge.
-Once ingredients and recipes are added, user can instruct the website to 
-search for liked recipes that can be made with ingredients in the fridge. 
-
-This is a practice project to get a better grip of:
+## What is College Recipes?
+Technology Used:
 
    - Django
    - Python 3
