@@ -2,6 +2,7 @@
 none. Just this github repo. Heroku was being a pain and we ended up scrapping the idea of hosting it online.
 
 ## What is College Recipes?
+College recipes is a simple project that allows students to search through
 Technology Used:
 
    - Django
