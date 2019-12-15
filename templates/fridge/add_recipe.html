@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block stylesheets %}
+  <script type="text/javascript" src="{% static 'js/jquery.formset.js' %}">
+  </script>
+{% endblock %}
+
+
+{% block main %}
+  <div class="add-recipe">
+    <form enctype="multipart/form-data" action="{% url 'fridge:add_recipe' %}"
+        method="post" id="myForm">
+      {% csrf_token %}
+
+      <div id="fridge_add_recipe">
+        {{ form.title }}
+        <div id="title_chars_left"></div>
+        {{ form.description }}
+        <div id="description_chars_left"></div>
+        {{ form.steps }}
+        <div id="steps_chars_left"></div>
+        <div class="recipe-additional-info">
+          <div class="cuisine">
+            Cuisine: {{ form.cuisine }}
+          </div>
+          <div class="recipe-image">
+            Image: {{ form.image }}
+              {{ form.non_field_errors }}
+          </div>
+        </div>
+
+        {% for field in form %}
+          {% if field.errors %}
+            {{ field.error.as_text|slice:"1 :" }}
+          {% endif %}
+        {% endfor %}
+      </div>
+
+      <div id="fridge_add_ingredients">
+        <h3>Ingredients</h3>
+        <table class="add_ingredients">
+          <tbody>
+              {% for form in formset.forms %}
+                <tr>
+                  <td>{{ form.ingredient }}</td>
+                  <td>{{ form.quantity }}</td>
+                  <td>{{ form.unit }}</td>
+                </tr>
+                <tr>
+                {% for field in form %}
+                  <td>
+                  {% if field.errors %}
+                    {{ field.errors.as_text|slice:"1:" }}
+                  {% endif %}
+                  </td>
+                {% endfor %}
+                </tr>
+              {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+      <!-- The script eventually needs to go. Need to figure out a minimal
+      way to achieve what is needed, instead of using code that has more
+      functionality than is needed. -->
+      <script type="text/javascript">
+        $(function() {
+          $('#myForm tbody tr').formset({
+            addText: 'Add another ingredient',
+            deleteText: '<img src={% static "files/icons/remove24x24.png" %} title="Remove ingredient" />'
+          })
+        })
+      </script>
+      {{ formset.management_form }}
+      {{ formset.non_form_errors.as_text|slice:"1:" }}
+
+      <input type="submit" value="Create Recipe" id="create-recipe" />
+    </form>
+  </div>
+{% endblock %}

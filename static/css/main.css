@@ -1,0 +1,978 @@
+* {
+    margin: 0;
+}
+
+*::selection {
+    background: indianred;
+    color: white;
+}
+
+header, footer, nav, article {
+    display: block;
+}
+
+html, body, input, h2, textarea {
+    height: 100%;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    font-size: 16px;
+}
+
+main {
+    min-height: 100%;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* Django class for errors */
+.errorlist {
+    display: inline-block;
+    margin: 10px 0 10px 0;
+    color: red;
+    /*font-weight: bold;*/
+}
+
+
+/* ==================== */
+/*    Navigation bar    */
+/* ==================== */
+
+nav {
+    background-color: #009999;
+    font-family: 'Lato', serif;
+    text-transform: uppercase;
+    font-size: 20px;
+}
+
+nav ul {
+    overflow: hidden;
+    margin: 0;
+
+}
+
+nav li {
+    float: right;
+}
+
+nav li#home {
+    float: left;
+}
+
+nav li a {
+    display: block;
+    text-align: center;
+    padding: 24px 26px;
+    transition: all 0.5s ease;
+    color: ghostwhite;
+}
+
+nav li a:hover {
+    color: #2F4F4F;
+}
+
+
+
+@media (max-width: 600px) {
+    nav li {
+        border-bottom: 1px solid #aaaaaa;
+    }
+
+    nav li#home, nav li {
+        float: none;
+    }
+}
+
+
+
+/* ================== */
+/*      Main body     */
+/* ================== */
+
+
+main {
+    padding: 30px 40px;
+}
+
+@media all and (max-width: 450px) {
+    main {
+        padding: 30px 10px;
+    }
+}
+
+h2, h3 {
+    text-align: center;
+}
+
+p {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 400;
+    line-height: 1.6em;
+    font-size: 18px;
+}
+
+/* ENCOURAGEMENT LINE */
+
+.encouragement {
+    min-width: 300px;
+    justify-content: center;
+    display: flex;
+    font-size: 32px;
+    line-height: 1.2em;
+    margin-top: 30px;
+}
+
+.encouragement-text {
+    display: inline-block;
+}
+
+.get-creative, .feast {
+    color:  #FF6347;
+    font-weight: 500;
+}
+
+.get-creative {
+    display:block;
+}
+
+
+
+/* SEARCH BAR */
+
+form#search-bar {
+    height: 250px;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+
+#id_q {
+    background: no-repeat rgba(255,255,255, 0.93) url('../files/icons/searchicon32x32.png') 7px 11px;
+    padding: 12px 20px 12px 50px;
+    border: 2px solid #222c36;
+    box-sizing: border-box;
+    max-width: 650px;
+    min-width: 193px;
+    height: 60px;
+    width: 65%;
+
+    font-size: 24px;
+}
+
+#id_q:focus {
+    outline: none;
+}
+
+#search-bar input[type=submit] {
+    background-color: #222c36;
+    border: 2px solid #222c36;
+    position: relative;
+    height: 60px;
+    width: 120px;
+    color: #fafafa;
+    cursor: pointer;
+
+    text-align: center;
+    font-size: 24px;
+}
+
+@media all and (max-width: 1000px) {
+    #id_q {
+        background-position: 5px 5px;
+        height: 46px;
+
+        font-size: 20px;
+    }
+
+    #id_q:focus {
+        -webkit-transition: width 0.5s ease-in-out;
+        -moz-transition: width 0.5s ease-in-out;
+        -o-transition: width 0.5s ease-in-out;
+        transition: width 0.5s ease-in-out;
+        width: 80%;
+    }
+
+    #search-bar input[type=submit] {
+        height: 46px;
+        font-size: 20px;
+    }
+}
+
+@media all and (max-width: 600px) {
+    #search-bar input[type=submit] {
+        font-size: 18px;
+        height: 46px;
+        width: 80px;
+    }
+
+    #id_q {
+        font-size: 16px;
+    }
+}
+
+
+
+/* HEADINGS */
+
+h2 {
+    font-size: 40px;
+    line-height: 1em;
+    text-transform: uppercase;
+    margin: 76px 0 46px 0;
+    padding-bottom: 20px;
+}
+
+h3 {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: bold;
+    padding: 20px 0 10px 0;
+}
+
+
+
+/* FOUR RECIPE VIEW */
+
+.four-recipes {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.four {
+    padding: 16px 18px 16px 18px;
+    box-sizing: border-box;
+    flex-basis: 25%;
+    position: relative;
+}
+
+.four a {
+    color: black;
+}
+
+.four img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    display: block;
+    margin: auto;
+}
+
+.current {
+    width: 100%;
+    margin: 20px auto;
+}
+
+.pages {
+    display: table;
+    margin: 0 auto;
+}
+
+@media all and (max-width: 1000px) {
+    .four {
+        flex-basis: 50%;
+    }
+}
+
+@media all and (max-width: 600px) {
+    .four {
+        min-width: 250px;
+    }
+
+    .four-recipes {
+        flex-direction: column;
+    }
+}
+
+
+/* ============ */
+/* RECIPES.HTML */
+/* ============ */
+
+
+/* FRIDGE ICON */
+
+.add-fridge-icon {
+    background: no-repeat white url('../files/icons/fridge28x28.png');
+    /*mix-blend-mode: screen;*/
+    border: 5px solid transparent;
+    border-radius: 0 2px 2px 0;
+    padding: 7px 0;
+    width: 24px;
+    height: 10px;
+}
+
+.add-fridge {
+    position: absolute;
+    top: 25px;
+}
+
+.add-fridge-icon:hover {
+    background-color: #ff8c00;
+    mix-blend-mode: normal;
+}
+
+#author {
+    color: #FF6347;
+}
+
+/* ****************** */
+/* RECIPE_DETAIL.HTML */
+/* ****************** */
+
+.large-recipe-pic {
+    margin: 50px auto 50px auto;
+    padding: 3px;
+    border: double;
+    border-radius: 2px;
+    display: block;
+    width: 100%;
+    max-width: 800px;
+    min-width: 300px;
+}
+
+.recipe-description {
+    margin: 30px 0;
+    text-align: center;
+}
+
+.recipe-description p {
+    font-size: 18px;
+}
+
+.recipe-additional-information, .recipe-links {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 14px;
+    text-align: center;
+}
+
+.recipe-additional-information li {
+    display: inline;
+    border-right: 1px solid #aaa;
+    padding-right: 7px;
+    padding-left: 5px;
+}
+
+.recipe-additional-information li:last-child {
+    border-right: none;
+    padding-right: 0;
+}
+
+.recipe-links {
+    margin: 10px 5px;
+}
+
+hr {
+    margin: 0 auto;
+    width: 75%;
+}
+
+/* Recipe process and ingredients */
+
+.recipe-essentials {
+    margin: 50px auto;
+    display: flex;
+}
+
+.recipe-essentials h3 {
+    text-transform: uppercase;
+    margin-bottom: 30px;
+    font-size: 24px;
+    font-weight: normal;
+}
+
+.recipe-ingredients {
+    margin-right: 20px;
+    text-align: right;
+    flex-basis: 30%;
+}
+
+.recipe-ingredients h3 {
+    text-align: right;
+}
+
+.recipe-ingredients li {
+    margin: 0 0 15px 40px;
+    font-size: 18px;
+}
+
+.recipe-ingredients li:first-child {
+    padding-top: 5px;
+}
+
+.recipe-process {
+    flex-basis: 70%;
+    margin-left: 40px;
+    counter-reset: step;
+}
+
+.recipe-process h3 {
+    text-align: left;
+}
+
+p.recipe-step {
+    margin: 15px 40px 15px 40px;
+    max-width: 700px;
+    letter-spacing: 0.0625em;
+    line-height: 2em;
+}
+
+p.recipe-step:before {
+    counter-increment: step;
+    content: counter(step);
+    font-size: 2em;
+    position: absolute;
+    margin-left: -45px;
+    margin-top: 9px;
+}
+
+#quantity {
+    font-weight: 400;
+}
+
+@media all and (max-width: 800px) {
+    .recipe-essentials {
+        flex-wrap: wrap;
+    }
+
+    .recipe-ingredients, .recipe-ingredients h3 {
+        flex-basis: 100%;
+        text-align: center;
+    }
+
+    .recipe-ingredients li {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .recipe-process {
+        flex-basis: 100%;
+    }
+
+}
+
+/* =================== */
+/* SEARCH_RESULTS.HTML */
+/* =================== */
+
+.searched-ingredients {
+    margin: 70px 0;
+}
+
+.searched-ingredients li {
+    display: inline-block;
+    background-color: goldenrod;
+    font-size: 24px;
+    padding: 5px 8px;
+    margin: 10px;
+}
+
+.search-results p {
+    font-size: 20px;
+    margin: 30px 0;
+}
+
+.search-results > h3 {
+    text-align: left;
+    font-weight: 400;
+    margin: 30px 0;
+    font-size: 24px;
+
+}
+
+/* ========== */
+/* LOGIN.HTML */
+/* ========== */
+
+form#login-form, form#register-form {
+    margin: 40px auto 0 auto;
+    width: 250px;
+}
+
+#login-form label, #register-form label {
+    margin: 0 8px;
+}
+
+#login-form input, #register-form input {
+    display: block;
+    min-width: 190px;
+    max-width: 190px;
+    margin: 20px auto 20px auto;
+    height: 40px;
+    padding: 5px 20px;
+}
+
+input#login-submit, input#register-submit {
+    background-color: #00994d;
+    border: 2px solid #00994d;
+    position: relative;
+    max-width: 100px;
+    min-width: 100px;
+    float: right;
+    padding: 0;
+    margin: 0 8px;
+    color: #fafafa;
+    display: block;
+    cursor: pointer;
+
+    text-align: center;
+    font-size: 18px;
+}
+
+input[type=submit]#login-submit:hover {
+    background-color: #009900;
+    border: 2px solid #009900;
+}
+
+#id_password {
+    font: small-caption;
+}
+
+.form-errors {
+    text-align: center;
+    padding: 100px;
+    clear: right;
+}
+
+
+/* ================== */
+/* FRIDGE_DETAIL.HTML */
+/* ================== */
+
+/* Add ingredient form */
+
+.add-ingredient {
+    margin: 20px auto;
+    text-align: center;
+}
+
+input#id_ingredient, input#id_quantity, .quantity-unit input, select#id_unit {
+    border: 1px solid black;
+    vertical-align: bottom;
+    font-size: 18px;
+    background: transparent;
+}
+
+input#id_ingredient, input#id_quantity {
+    padding: 5px 15px 6px 15px;
+    height: 30px;
+}
+
+input#id_ingredient {
+    width: 250px;
+    min-width: 250px;
+}
+
+input#id_quantity {
+    width: 100px;
+    min-width: 100px;
+}
+
+.quantity-unit {
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.quantity-unit input, select#id_unit {
+    height: 43px;
+    padding: 5px;
+}
+
+#add-ingredient-button {
+    border-radius: 2px;
+    width: 60px;
+    font-weight: 500;
+    cursor: pointer;
+    background-color: #222c36;
+    color: white;
+}
+
+#add-ingredient-button:hover {
+    background-color: #2c3946;
+}
+
+select#id_unit {
+    width: 80px;
+}
+
+
+@media all and (max-width: 400px) {
+    .quantity-unit {
+        display: inline-block;
+        min-width: 282px;
+        margin: 10px auto 0 auto;
+    }
+}
+
+/* Fridge contents */
+
+.fridge {
+    display: flex;
+}
+
+.fridge-ingredients, .fridge-recipes {
+    /* These should not be too wide, at least with text. Ideally, a wide screen
+     would allow to show images of recipes, not only titles & descriptions. */
+    max-width: 450px;
+    margin: 0 auto;
+    flex-basis: 50%;
+}
+
+.fridge-ingredients {
+    margin-right: 25px;
+    text-align: right;
+}
+
+.fridge-recipes {
+    margin-left: 25px;
+}
+
+.fridge-ingredients h3, .fridge-recipes h3 {
+    text-transform: uppercase;
+}
+
+.fridge-ingredients h3 {
+    text-align: right;
+}
+
+.fridge-recipes h3 {
+    text-align: left;
+}
+
+.fridge-ingredients li {
+    margin: 10px 0;
+}
+
+.fridge-remove img {
+    vertical-align: middle;
+    display: inline-block;
+    height: 18px;
+    width: 18px;
+    margin-top: -4px;
+}
+
+.ingredient-make, .fridge-recipe-suggestions {
+    margin: 30px 0;
+}
+
+.fridge-recipes li {
+    margin-bottom: 30px;
+}
+
+/* Above and below are quite ugly, fix */
+
+.fridge-recipe-suggestions li {
+    margin: 10px 0;
+}
+
+.fridge-recipe-title {
+    text-transform: uppercase;
+}
+
+.fridge-remove {
+    margin: 0 10px;
+    font-size: 12px;
+}
+
+
+
+@media all and (max-width: 650px) {
+    .fridge {
+        flex-flow: wrap;
+    }
+
+    .fridge-ingredients, .fridge-recipes {
+        flex-basis: 100%;
+        min-width: 400px;
+        margin: 0 auto;
+    }
+
+    .fridge-ingredients, .fridge-recipes,
+    .fridge-recipes h3, .fridge-ingredients h3 {
+        text-align: center;
+    }
+
+    .fridge-recipes h3 {
+        margin: 60px 0 30px 0;
+    }
+}
+
+
+/* ========== */
+/* ABOUT.HTML */
+/* ========== */
+
+.about {
+    margin: 0 auto;
+    max-width: 800px;
+    min-width: 350px;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.about h2 {
+    margin: 50px 0 30px 0;
+}
+
+.about h3 {
+    text-align: left;
+    margin: 20px 0 10px 0;
+}
+
+.about p {
+    margin: 10px 0;
+}
+
+.about ul {
+    list-style-type: circle;
+    margin-left: 30px;
+}
+
+.about li {
+    margin: 5px 0 5px 0;
+}
+
+
+/* =============== */
+/* ADD_RECIPE.HTML */
+/* =============== */
+
+.add-recipe {
+    margin: 0 auto;
+    text-align: center;
+}
+
+textarea#id_description, textarea#id_steps, input#id_title,
+.recipe-additional-info, #fridge_add_ingredients {
+    text-align: left;
+    display: block;
+    padding: 5px 10px 5px 10px;
+    margin: 15px auto;
+    width: 530px;
+}
+
+#fridge_add_ingredients {
+    width: 550px;
+}
+
+.add-recipe input:not(#id_image), .add-recipe textarea, .add-recipe select {
+    border: 1px solid darkgrey;
+}
+
+input#id_title {
+    height: 30px;
+}
+
+textarea#id_description, textarea#id_steps {
+    height: 200px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.add-recipe label {
+    display: inline-block;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.recipe-additional-info {
+    margin: 30px auto;
+    display: block;
+    width: 550px;
+    padding: 0;
+}
+
+select#id_cuisine {
+    background-color: transparent;
+    /* Used to remove chrome specific styling: */
+    /*-webkit-appearance: none;*/
+    /*-webkit-border-radius: 0;*/
+    display: block;
+    margin: 10px auto;
+    height: 30px;
+    width: 100%;
+
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+}
+
+.cuisine, .recipe-image {
+    margin: 30px 0;
+}
+
+input#id_image {
+    display: block;
+    margin-top: 10px;
+}
+
+.add-recipe h3 {
+    margin: 20px auto 30px auto;
+}
+
+table.add_ingredients {
+    margin: 0 auto;
+}
+
+.dynamic-form td, .dynamic-form select {
+    height: 24px;
+}
+
+tr.dynamic-form > td:first-child input {
+    width: 225px;
+}
+
+tr.dynamic-form > td:not(first-child) input {
+    width: 162px;
+}
+
+.dynamic-form a, .dynamic-form img {
+    vertical-align: middle;
+    display: inline-block;
+}
+
+.dynamic-form input, .dynamic-form img {
+    padding: 3px 10px 3px 10px;
+    font-size: 14px;
+}
+
+.dynamic-form select {
+    font-size: 14px;
+    height: 34px;
+}
+
+input#create-recipe {
+    background-color: #009900;
+    border-radius: 2px;
+    border: none;
+    cursor: pointer;
+    width: 150px;
+    height: 40px;
+    margin: 60px auto;
+
+    color: #ffffff;
+}
+
+
+@media all and (max-width: 600px) {
+    textarea#id_description, textarea#id_steps, input#id_title {
+        width: 350px;
+    }
+
+    .recipe-additional-info {
+        width: 370px;
+    }
+
+    #fridge_add_ingredients {
+        width: 370px;
+        padding: 0;
+    }
+
+    table.add_ingredients {
+        width: 370px;
+    }
+
+    .dynamic-form td {
+        display: block;
+        margin: 10px 0;
+    }
+
+    .dynamic-form td input {
+        min-width: 350px;
+        display: inline;
+        padding: 3px 9px;
+        margin-left: -3px;
+    }
+
+    .dynamic-form select {
+        display: inline-block;
+        margin-left: -3px;
+        width: 326px;
+    }
+}
+
+
+/* ========================= */
+/*   INGREDIENT_DETAIL.HTM   */
+/* ========================= */
+
+.ingredient-info {
+    margin: 30px auto 100px auto;
+}
+
+.ingredient-info h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    text-transform: uppercase;
+    border-bottom: 1px solid black;
+    display: inline-block;
+    margin: 20px auto 10px auto;
+    padding: 0;
+}
+
+.ingredient-title {
+    text-align: center;
+}
+
+.ingredient-info h4 {
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    margin: 0 auto 20px auto;
+}
+
+
+
+/* ================== */
+/*   Footer insides   */
+/* ================== */
+
+footer {
+    background-color: #339999;
+    text-align: center;
+    margin-top: 10px;
+    padding-top: 10px;
+    color: black;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+#copyright {
+    line-height: 30px;
+    font-size: 12px;
+}
+
+#copyright li {
+    display: inline;
+    margin: 0 5px;
+}
+
+#copyright p {
+    font-size: 12px;
+}
+
+#copyright img[alt="Github icon"] {
+    width: 28px;
+    height: 28px;
+}
+
+#copyright ul.footer-links {
+    padding: 20px 0;
+}
+
+
+/* ==================== */
+/*   Password Warning   */
+/* ==================== */
+
+.danger {
+    display: block;
+    border: solid 2px red;
+    padding: 10px;
+    width: auto;
+    max-width: 400px;
+    text-align: center;
+    margin: 0 auto;
+}

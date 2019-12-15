@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block main %}
+
+
+  <img src="{{ image.url }}" alt="{{ recipe.title }}" class="large-recipe-pic"/>
+  <h2>{{ title }}</h2>
+  <hr>
+
+  <!-- Note: two new lines result in addition of <p>*text*</p>. -->
+  <div class="recipe-description">
+    {{ description|linebreaks }}
+  </div>
+
+  <div class="recipe-additional-information">
+    <ul>
+      <li>{{ cuisine }}</li>
+      <li>Views: {{ views }}</li>
+      <li>Uploaded by <span id="author">{{ author }}</span> on {{ date|date:'d F Y' }}</li>
+    </ul>
+  </div>
+
+  <div class="recipe-links">
+    <ul>
+      <li>
+        {% if user.is_authenticated and pk not in user_recipes %}
+          <a href="{% url 'recipes:add_to_fridge' pk %}">Add to your Fridge</a>
+        {% elif user.is_authenticated %}
+          <a href="{% url 'fridge:remove_recipe' pk %}">Remove from your Fridge</a>
+        {% endif %}
+      </li>
+      <li>
+        <a href="{% url 'recipes:recipes' %}">Back to Recipes</a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="recipe-essentials">
+    <div class="recipe-ingredients">
+      <h3>Ingredients</h3>
+      <ul>
+        {% for ingredient in ingredients %}
+          <li>
+            <span id="quantity">
+            {{ ingredient.quantity }}
+            {% if ingredient.quantity >= 2.0 %}
+              {{ ingredient.unit.plural }}
+            {% else %}
+              {{ ingredient.unit.abbrev }}
+            {% endif %}
+            </span>
+            of {{ ingredient.ingredient }}
+          </li>
+        {% empty %}
+          <li>The recipe does not seem to have any ingredients! Curious...</li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <div class="recipe-process">
+      <h3>Process</h3>
+      <!-- Style paragraphs with CSS, so that there is some space between. -->
+      {% for step in steps %}
+        <p class="recipe-step">{{ step }}</p>
+      {% empty %}
+        <p>The recipe does not have any preparation steps. Time to flex your imagination!</p>
+      {% endfor %}
+    </div>
+  </div>
+
+{% endblock %}

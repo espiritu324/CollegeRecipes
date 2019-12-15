@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block main %}
+  {% if fridge %}
+
+    <div class="add-ingredient">
+      <h3>Fill up your fridge...</h3>
+      <form action="{% url 'fridge:fridge_detail' %}" method="post" id="fridge-ingredient-form">
+        {% csrf_token %}
+        {{ form.ingredient }}
+        <div class="quantity-unit">
+          {{ form.quantity }}
+          {{ form.unit }}
+          <input type="submit" value="Add" id="add-ingredient-button" />
+        </div>
+
+        {{ form.ingredient.errors }}
+        {{ form.quantity.errors }}
+        {{ form.unit.errors }}
+        <!-- Where would this fit best? -->
+        {{ form.non_field_errors }}
+      </form>
+    </div>
+
+    <div class="fridge">
+      <div class="fridge-ingredients">
+        <h3>Ingredients</h3>
+        {% if ingredients %}
+          <div class="ingredient-make">
+            <ul>
+              <li><a href="{% url 'fridge:possibilities' %}">Make something!</a></li>
+              <li><a href="{% url 'fridge:fridge_recipes' %}">Make something I like!</a></li>
+            </ul>
+            <!-- URL to fridge recipes that have <= ingredients in a fridge. Needs a cleaner url name, though. -->
+          </div>
+        {% endif %}
+        <ul>
+          {% for ingredient in ingredients %}
+            <li>
+              <span id="quantity">
+                {{ ingredient.quantity }}
+                {% if ingredient.quantity >= 2.0 %}
+                  {{ ingredient.unit.plural }}
+                {% else %}
+                  {{ ingredient.unit.abbrev }}
+                {% endif %}
+              </span>
+              of
+              <a href="{{ ingredient.ingredient.get_absolute_url }}">{{ ingredient.ingredient }}</a>
+              <a class="fridge-remove" href="{% url 'fridge:remove_ingredient' ingredient.pk %}">
+                <img src="{% static 'files/icons/remove24x24.png' %}" title="Remove recipe" />
+              </a>
+            </li>
+          {% empty %}
+            <li class="empty-list">There are no ingredients in the fridge. Perhaps it is time to do some shopping..?</li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <div class="fridge-recipes">
+        <h3>Recipes</h3>
+          <div class="fridge-recipe-suggestions">
+            <ul>
+              <li><a href="{% url 'fridge:add_recipe' %}">Add a recipe</a></li>
+              <li><a href="{% url 'recipes:recipes' %}">Browse existing recipes</a></li>
+            </ul>
+          </div>
+        <ul>
+          {% for recipe in recipes %}
+            <li>
+              <a class="fridge-recipe-title" href="{{ recipe.get_absolute_url }}">{{ recipe }}</a>
+              <a class="fridge-remove" href="{% url 'fridge:remove_recipe' recipe.pk %}">
+                <img src="{% static 'files/icons/remove24x24.png' %}" title="Remove recipe" />
+              </a>
+              <p>{{ recipe.description }}</p>
+            </li>
+          {% empty %}
+            <li class="empty-list">You have no favorite recipes. Your grandma would be sad!</li>
+          {% endfor %}
+        </ul>
+      </div>
+
+    {% else %}
+      No fridge was found. That is strange!
+    {% endif %}
+  </div>
+{% endblock %}
